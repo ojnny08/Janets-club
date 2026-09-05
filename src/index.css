@@ -1,6 +1,53 @@
-
 @import "tailwindcss";
 
 @theme {
+    /* Brand — light blue from the DUESA crest, plus a readable navy scale */
+    --color-sky-brand: #89CFF0;
+    --color-sky-soft: #E8F4FC;
+    --color-sky-tint: #F5FAFE;
+
+    --color-brand: #2F5DA8;
+    --color-brand-deep: #1B3A63;
+
+    --color-ink: #0F2942;
+    --color-ink-muted: #4A6076;
+    --color-line: #D8E6F2;
+
+    /* Kept for backwards compatibility with existing markup */
     --color-background-bb: #89CFF0;
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-size: 1.125rem;
+        line-height: 1.7;
+        color: var(--color-ink);
+        background-color: var(--color-sky-tint);
+        -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+        line-height: 1.15;
+        text-wrap: balance;
+    }
+
+    :focus-visible {
+        outline: 2px solid var(--color-brand);
+        outline-offset: 3px;
+        border-radius: 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+        *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
 }

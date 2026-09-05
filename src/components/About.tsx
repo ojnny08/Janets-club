@@ -1,12 +1,30 @@
-import logo from '../assets/duesa-logo-circle.png'  
+import logo from '../assets/duesa-logo-circle.png'
+
 export default function About() {
     return (
-        <section className="min-h-dvh flex items-center px-6 md:px-52">
-            <div className="flex flex-col md:flex-row gap-16 max-w-5xl">
-                <img src={logo} alt="DUESA" className="w-80 h-80 shrink-0"/>
-                <div className="max-w-prose text-center md:text-left">
-                    <h1 className="text-3xl font-bold">About Us</h1>
-                    <p>boi</p>
+        <section
+            id="about"
+            className="scroll-mt-20 px-6 py-28 md:px-16 lg:px-24"
+        >
+            <div className="mx-auto flex max-w-6xl flex-col items-center gap-14 md:flex-row md:items-center md:gap-20">
+                <img
+                    src={logo}
+                    alt="DUESA crest"
+                    className="h-64 w-64 shrink-0 md:h-72 md:w-72"
+                />
+
+                <div className="max-w-prose md:text-left">
+                    <h2 className="text-4xl font-bold text-ink md:text-5xl">
+                        About Us
+                    </h2>
+
+                    <p className="mt-4 text-lg text-ink-muted">
+                        Words Words Words Words Words Words Words Words Words
+                        Words Words Words Words Words Words Words Words Words
+                        Words Words Words Words Words Words Words Words Words
+                        Words Words Words Words Words Words Words Words Words
+                        Words Words Words Words
+                    </p>
                 </div>
             </div>
         </section>

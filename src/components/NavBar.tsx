@@ -1,19 +1,37 @@
+import logo from '../assets/duesa-logo-circle.png'
+
+const links = [
+    { label: 'About', href: '#about' },
+    { label: 'Meet the Team', href: '#team' },
+    { label: 'Schedule', href: '#schedule' },
+    { label: 'Hiring & Elections', href: '#hiring' },
+    { label: 'Contact', href: '#contact' },
+]
 
 export default function NavBar() {
     return (
-        <section className="fixed top-0 inset-x-0 z-50 p-4 border-b bg-background-bb">
-            <div className="flex items-center justify-between">
-                <div className="">
-                    brand logo
-                </div>
-                <ul className="flex items-center gap-5 text-lg">
-                    <li><a href="#about">About</a></li>
-                    <li><a>Meet the team</a></li>
-                    <li><a>Schedule</a></li>
-                    <li><a>Hiring/Elections</a></li>
-                    <li><a>Contact Us</a></li>
+        <header className="fixed top-0 inset-x-0 z-50 border-b border-line/80 bg-sky-tint/85">
+            <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-8 px-6 md:px-10">
+                <a href="#top" className="flex items-center gap-3 shrink-0">
+                    <img src={logo} alt="" className="h-12 w-12" />
+                    <span className="text-xl font-bold tracking-wide text-brand-deep">
+                        DUESA
+                    </span>
+                </a>
+
+                <ul className="hidden items-center gap-8 md:flex">
+                    {links.map(({ label, href }) => (
+                        <li key={href}>
+                            <a
+                                href={href}
+                                className="text-base font-medium text-ink-muted underline-offset-8 transition-colors duration-200 hover:text-brand hover:underline hover:decoration-sky-brand hover:decoration-2"
+                            >
+                                {label}
+                            </a>
+                        </li>
+                    ))}
                 </ul>
-            </div>
-        </section>
+            </nav>
+        </header>
     )
 }
