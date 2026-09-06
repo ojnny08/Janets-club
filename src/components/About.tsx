@@ -4,7 +4,7 @@ export default function About() {
     return (
         <section
             id="about"
-            className="scroll-mt-20 px-6 py-28 md:px-16 lg:px-24"
+            className="scroll-mt-20 px-6 py-4 md:px-16 lg:px-24"
         >
             <div className="mx-auto flex max-w-6xl flex-col items-center gap-14 md:flex-row md:items-center md:gap-20">
                 <img
@@ -14,7 +14,7 @@ export default function About() {
                 />
 
                 <div className="max-w-prose md:text-left">
-                    <h2 className="text-4xl font-bold text-ink md:text-5xl">
+                    <h2 className="text-4xl font-bold text-brand-deep md:text-5xl">
                         About Us
                     </h2>
 
