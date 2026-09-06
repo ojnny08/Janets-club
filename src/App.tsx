@@ -20,7 +20,18 @@ function App() {
               Dalhousie Undergraduate Economics Student Association
             </h1>
             <p className="mx-auto max-w-xl pt-4 text-ink-muted">We welcome all Dalhousie students interested in Economics to join!</p>
-            
+
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
+              <a href="#team" className="bg-brand-deep px-6 py-3 font-semibold text-white">
+                Meet the Team
+              </a>
+              <a href="#schedule" className="bg-brand-deep px-6 py-3 font-semibold text-white">
+                Schedule
+              </a>
+              <a href="#contact" className="bg-brand-deep px-6 py-3 font-semibold text-white">
+                Contact
+              </a>
+            </div>
           </div>
         </section>
 
