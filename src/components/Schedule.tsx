@@ -42,7 +42,6 @@ export default function Schedule() {
 
     return (
         <section
-            id="schedule"
             className="scroll-mt-20 px-6 py-28 md:px-16 lg:px-24"
         >
             <div className="mx-auto max-w-6xl">

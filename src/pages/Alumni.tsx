@@ -6,10 +6,9 @@ const alumni = [
     { name: 'Alumni Name', role: 'Role, Organization', year: 'Class of 20XX' },
 ]
 
-export default function AlumniSpotlight() {
-    return (
-        <section
-            id="alumni"
+export default function Alumni() {
+   return (
+     <section
             className="scroll-mt-20 px-6 py-20 md:px-16 lg:px-24"
         >
             <div className="mx-auto max-w-6xl">
@@ -40,5 +39,5 @@ export default function AlumniSpotlight() {
                 </ul>
             </div>
         </section>
-    )
+   )
 }

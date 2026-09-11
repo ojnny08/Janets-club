@@ -1,10 +1,9 @@
-import logo from '../assets/duesa-logo-circle.png'
+import logo from "../assets/duesa-logo-circle.png"
 
-export default function About() {
+export function About() {
     return (
         <section
-            id="about"
-            className="scroll-mt-20 px-6 py-4 md:px-16 lg:px-24"
+            className="scroll-mt-20 px-6 py-20 md:px-16 lg:px-24"
         >
             <div className="mx-auto flex max-w-6xl flex-col items-center gap-14 md:flex-row md:items-center md:gap-20">
                 <img

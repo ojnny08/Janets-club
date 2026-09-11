@@ -13,7 +13,6 @@ const socials = [
 export default function Contact() {
     return (
         <footer
-            id="contact"
             className="scroll-mt-20 bg-brand-deep px-6 py-16 text-white md:px-16 lg:px-24"
         >
             <div className="mx-auto flex max-w-6xl flex-col items-center text-center md:flex-row md:items-center md:gap-8 md:text-left">
