@@ -1,5 +1,8 @@
+import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import logo from '../assets/duesa-logo-circle.png'
+import { useAuth } from '../context/useAuth'
+import LoginDropdown from './LoginDropdown'
 
 const links = [
     { label: 'About', to: '/about' },
@@ -8,6 +11,9 @@ const links = [
 ]
 
 export default function NavBar() {
+    const { user, loading, logout } = useAuth()
+    const [loginOpen, setLoginOpen] = useState(false)
+
     return (
         <header className="fixed top-0 inset-x-0 z-50 border-b border-line/80 bg-sky-tint/85 backdrop-blur-md">
             <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-8 px-6 md:px-10">
@@ -34,6 +40,22 @@ export default function NavBar() {
                         </li>
                     ))}
                 </ul>
+
+                <div className="relative shrink-0">
+                    <button
+                        type="button"
+                        data-login-toggle
+                        onClick={user ? logout : () => setLoginOpen((o) => !o)}
+                        disabled={loading}
+                        className="px-5 py-2 text-base font-semibold text-brand-deep disabled:opacity-50"
+                    >
+                        {loading ? '...' : user ? 'Admin Account' : 'Admin Login'}
+                    </button>
+
+                    {loginOpen && !user && (
+                        <LoginDropdown onClose={() => setLoginOpen(false)} />
+                    )}
+                </div>
             </nav>
         </header>
     )
