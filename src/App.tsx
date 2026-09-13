@@ -4,6 +4,7 @@ import Home from "./pages/Home"
 import Team from "./pages/Team"
 import { About } from "./pages/About"
 import Alumni from "./pages/Alumni"
+import Admin from "./pages/Admin"
 import Contact from "./components/Contact"
 import AuthProvider from "./context/AuthContext"
 
@@ -19,6 +20,7 @@ function App() {
               <Route path="/team" element={<Team />} />
               <Route path="/about" element={<About />} />
               <Route path="/alumni" element={<Alumni />} />
+              <Route path="/admin" element={<Admin />} />
             </Routes>
           </div>
           <Contact />

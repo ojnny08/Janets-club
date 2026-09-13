@@ -140,7 +140,6 @@ export default function Schedule() {
                                 })}
                             </div>
 
-                            {/* Legend */}
                             <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm text-ink-muted">
                                 <span className="flex items-center gap-2">
                                     <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: '#2F5DA8' }} />

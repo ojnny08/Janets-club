@@ -11,7 +11,7 @@ const links = [
 ]
 
 export default function NavBar() {
-    const { user, loading, logout } = useAuth()
+    const { user, loading, logout, isAdmin } = useAuth()
     const [loginOpen, setLoginOpen] = useState(false)
 
     return (
@@ -39,6 +39,20 @@ export default function NavBar() {
                             </NavLink>
                         </li>
                     ))}
+                    {isAdmin && (
+                        <li>
+                            <NavLink
+                                to="/admin"
+                                className={({ isActive }) =>
+                                    isActive
+                                        ? 'text-base font-semibold text-brand-deep'
+                                        : 'text-base font-medium text-ink-muted'
+                                }
+                            >
+                                Admin
+                            </NavLink>
+                        </li>
+                    )}
                 </ul>
 
                 <div className="relative shrink-0">
