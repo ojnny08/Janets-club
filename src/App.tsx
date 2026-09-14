@@ -14,7 +14,7 @@ function App() {
       <BrowserRouter>
         <div className="flex min-h-dvh flex-col">
           <NavBar />
-          <div className="flex-1 pt-20">
+          <main className="flex-1 min-h-dvh pt-20">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/team" element={<Team />} />
@@ -22,7 +22,7 @@ function App() {
               <Route path="/alumni" element={<Alumni />} />
               <Route path="/admin" element={<Admin />} />
             </Routes>
-          </div>
+          </main>
           <Contact />
         </div>
       </BrowserRouter>

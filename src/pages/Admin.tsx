@@ -2,11 +2,13 @@ import { useState } from 'react'
 import { Navigate } from 'react-router-dom'
 import { useAuth } from '../context/useAuth'
 import TeamAdmin from './admin/TeamAdmin'
+import RolesAdmin from './admin/RolesAdmin'
 
-type Section = 'team' | 'alumni' | 'about'
+type Section = 'team' | 'roles' | 'alumni' | 'about'
 
 const ROWS: { key: Section; label: string; hint: string }[] = [
     { key: 'team', label: 'Team', hint: 'Add, edit and remove team members' },
+    { key: 'roles', label: 'Roles', hint: 'Create, order and remove roles' },
     { key: 'alumni', label: 'Alumni', hint: 'Coming soon' },
     { key: 'about', label: 'About', hint: 'Coming soon' },
 ]
@@ -54,6 +56,7 @@ export default function Admin() {
                             ← Back
                         </button>
                         {active === 'team' && <TeamAdmin />}
+                        {active === 'roles' && <RolesAdmin />}
                         {active === 'alumni' && (
                             <p className="text-ink-muted">Alumni management — coming soon.</p>
                         )}
