@@ -1,5 +1,6 @@
 import { FaInstagram, FaLinkedin } from 'react-icons/fa'
 import { SiGmail } from 'react-icons/si'
+import { useLocation } from 'react-router-dom'
 import logo from '../assets/duesa-logo-circle.png'
 
 const EMAIL = 'duesa@gmail.com'
@@ -11,6 +12,9 @@ const socials = [
 ]
 
 export default function Contact() {
+    const { pathname } = useLocation()
+    if (pathname.startsWith('/admin')) return null
+
     return (
         <footer
             className="scroll-mt-20 bg-brand-deep px-6 py-16 text-white md:px-16 lg:px-24"

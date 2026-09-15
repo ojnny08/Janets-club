@@ -30,8 +30,8 @@ export default function Team() {
     return (
         <section className="scroll-mt-20 px-6 py-20 md:px-16 lg:px-24">
             <div className="mx-auto max-w-6xl">
-                <h2 className="text-center text-4xl font-bold text-brand-deep md:text-5xl">
-                    Meet The Team
+                <h2 className="text-center  text-3xl font-bold text-brand-deep md:text-4xl">
+                    Meet The Members
                 </h2>
 
                 {loading ? (
@@ -42,14 +42,14 @@ export default function Team() {
                     <div className="mt-16 flex flex-col gap-20">
                         {sections.map(({ role, members }) => (
                             <div key={role.id}>
-                                <h3 className="text-center text-2xl font-bold text-brand-deep md:text-3xl">
+                                <h3 className="text-2xl font-bold text-brand-deep md:text-3xl">
                                     {role.name}
                                 </h3>
-                                <div className="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3">
+                                <div className="mt-10 grid grid-cols-1 gap-10 pl-6 sm:grid-cols-2 md:pl-12">
                                     {members.map((person) => (
                                         <div
                                             key={person.id}
-                                            className="flex flex-col p-8 text-center"
+                                            className="mx-auto w-full max-w-xs flex flex-col rounded-2xl bg-card py-8 text-center"
                                         >
                                             <img
                                                 src={person.imageUrl || logo}

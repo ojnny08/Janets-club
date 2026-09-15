@@ -1,21 +1,23 @@
 @import "tailwindcss";
 
 @theme {
-    /* Brand — light blue from the DUESA crest, plus a readable navy scale */
-    --color-sky-brand: #89CFF0;
-    --color-sky-soft: #E8F4FC;
-    --color-sky-tint: #F5FAFE;
+    /* Brand — calm, muted navy from the DUESA crest, anchored on #294f8b.
+       Softer and less bright than the previous sky-blue palette. */
+    --color-sky-brand: #6E8FBF;   /* desaturated crest blue (accent) */
+    --color-sky-soft: #DFE7F1;    /* soft blue-grey surface / rings */
+    --color-sky-tint: #EDF1F7;    /* calm off-white page background */
 
-    --color-brand: #2F5DA8;
-    --color-brand-deep: #1B3A63;
-    --color-brand-bright: #4A87D8;
+    --color-brand: #294f8b;       /* primary navy */
+    --color-brand-deep: #1B3560;  /* deep navy — headings, buttons */
+    --color-brand-bright: #3D68A8;/* muted brighter accent */
 
-    --color-ink: #0F2942;
-    --color-ink-muted: #4A6076;
-    --color-line: #D8E6F2;
+    --color-ink: #16263F;         /* deep navy ink for body text */
+    --color-ink-muted: #52627A;   /* muted secondary text */
+    --color-line: #CFDAE8;        /* soft border */
+    --color-card: #A9D6F5;        /* light blue card surface */
 
     /* Kept for backwards compatibility with existing markup */
-    --color-background-bb: #89CFF0;
+    --color-background: #1E3A66;
 }
 
 @layer base {

@@ -1,28 +1,27 @@
+import { useEffect, useState } from "react"
 import logo from "../assets/duesa-logo-circle.png"
+import { getAbout, type About as AboutContent } from "../lib/about"
 
 export function About() {
+    const [about, setAbout] = useState<AboutContent | null>(null)
+
+    useEffect(() => {
+        getAbout().then(setAbout).catch(console.error)
+    }, [])
+
     return (
         <section
             className="scroll-mt-20 px-6 py-20 md:px-16 lg:px-24"
         >
             <div className="mx-auto flex max-w-6xl flex-col items-center gap-14 md:flex-row md:items-center md:gap-20">
-                <img
-                    src={logo}
-                    alt="DUESA crest"
-                    className="h-64 w-64 shrink-0 md:h-72 md:w-72"
-                />
 
-                <div className="max-w-prose md:text-left">
-                    <h2 className="text-4xl font-bold text-brand-deep md:text-5xl">
-                        About Us
+                <div className="max-w-prose font-bold text-brand-deep">
+                    <h2 className="text-2xl md:text-4xl">
+                        {about?.heading || "About Us"}
                     </h2>
 
-                    <p className="mt-4 text-lg text-ink-muted">
-                        Words Words Words Words Words Words Words Words Words
-                        Words Words Words Words Words Words Words Words Words
-                        Words Words Words Words Words Words Words Words Words
-                        Words Words Words Words Words Words Words Words Words
-                        Words Words Words Words
+                    <p className="mt-4 whitespace-pre-line text-xl">
+                        {about?.body}
                     </p>
                 </div>
             </div>

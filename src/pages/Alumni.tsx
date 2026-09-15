@@ -12,7 +12,7 @@ export default function Alumni() {
             className="scroll-mt-20 px-6 py-20 md:px-16 lg:px-24"
         >
             <div className="mx-auto max-w-6xl">
-                <h2 className="mt-4 text-center text-4xl font-bold text-brand-deep md:text-5xl">
+                <h2 className="mt-4 text-center text-3xl font-bold text-brand-deep md:text-4xl">
                     Alumni Spotlight
                 </h2>
 
@@ -20,7 +20,7 @@ export default function Alumni() {
                     {alumni.map((person, i) => (
                         <li
                             key={i}
-                            className="flex flex-col items-center p-10 text-center"
+                            className="flex flex-col items-center rounded-2xl bg-card p-10 text-center"
                         >
                             <img
                                 src={logo}

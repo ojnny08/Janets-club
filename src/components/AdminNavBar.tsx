@@ -19,7 +19,7 @@ export default function AdminNavBar({ active, onSelect }: Props) {
     return (
         <nav
             aria-label="Admin sections"
-            className="shrink-0 bg-brand-deep p-4 md:w-60 md:p-6"
+            className="m-2 shrink-0 rounded-xl bg-brand-deep p-4 md:mx-4 md:w-60 md:p-6"
         >
             <h2 className="px-3 pb-6 text-2xl font-bold text-white">Admin</h2>
             <ul className="flex gap-2 overflow-x-auto md:flex-col md:overflow-visible">

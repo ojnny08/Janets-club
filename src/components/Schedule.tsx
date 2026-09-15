@@ -45,7 +45,7 @@ export default function Schedule() {
             className="scroll-mt-20 px-6 py-28 md:px-16 lg:px-24"
         >
             <div className="mx-auto max-w-6xl">
-                <h2 className="text-center text-4xl font-bold text-ink md:text-5xl">
+                <h2 className="text-center text-3xl font-bold text-ink md:text-4xl">
                     Schedule
                 </h2>
 

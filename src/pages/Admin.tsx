@@ -4,6 +4,7 @@ import { useAuth } from '../context/useAuth'
 import AdminNavBar, { type Section } from '../components/AdminNavBar'
 import TeamAdmin from './admin/TeamAdmin'
 import RolesAdmin from './admin/RolesAdmin'
+import AboutAdmin from './admin/AboutAdmin'
 
 export default function Admin() {
     const { isAdmin, loading } = useAuth()
@@ -16,15 +17,13 @@ export default function Admin() {
         <div className="flex min-h-[calc(100dvh-5rem)] flex-col md:flex-row">
             <AdminNavBar active={active} onSelect={setActive} />
 
-            <div className="min-w-0 flex-1 px-6 py-10 md:px-10">
+            <div className="flex min-w-0 flex-1 flex-col px-6 py-10 md:px-10">
                 {active === 'team' && <TeamAdmin />}
                 {active === 'roles' && <RolesAdmin />}
                 {active === 'alumni' && (
                     <p className="text-ink-muted">Alumni management — coming soon.</p>
                 )}
-                {active === 'about' && (
-                    <p className="text-ink-muted">About editing — coming soon.</p>
-                )}
+                {active === 'about' && <AboutAdmin />}
             </div>
         </div>
     )
