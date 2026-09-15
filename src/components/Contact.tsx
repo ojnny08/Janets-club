@@ -1,7 +1,7 @@
 import { FaInstagram, FaLinkedin } from 'react-icons/fa'
 import { SiGmail } from 'react-icons/si'
 import { useLocation } from 'react-router-dom'
-import logo from '../assets/duesa-logo-circle.png'
+import logo from '../assets/DUESA.png'
 
 const EMAIL = 'duesa@gmail.com'
 
@@ -23,7 +23,7 @@ export default function Contact() {
                 <img
                     src={logo}
                     alt="DUESA crest"
-                    className="h-36 w-36 shrink-0 md:h-44 md:w-44"
+                    className="h-36 w-36 shrink-0 rounded-full object-cover md:h-44 md:w-44"
                 />
 
                 <div>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
-import logo from "../assets/duesa-logo-circle.png"
 import { getAbout, type About as AboutContent } from "../lib/about"
+import SignUp from "../components/SignUp"
 
 export function About() {
     const [about, setAbout] = useState<AboutContent | null>(null)
@@ -10,21 +10,26 @@ export function About() {
     }, [])
 
     return (
-        <section
-            className="scroll-mt-20 px-6 py-20 md:px-16 lg:px-24"
-        >
-            <div className="mx-auto flex max-w-6xl flex-col items-center gap-14 md:flex-row md:items-center md:gap-20">
+        <>
+            <section
+                className="scroll-mt-20 px-6 py-20 md:px-16 lg:px-24"
+            >
+                <div className="mx-auto flex max-w-6xl flex-col items-center justify-center text-center gap-14  md:gap-20">
 
-                <div className="max-w-prose font-bold text-brand-deep">
-                    <h2 className="text-2xl md:text-4xl">
-                        {about?.heading || "About Us"}
-                    </h2>
+                    <div className="w-full max-w-prose font-bold text-brand-deep">
+                        <h2 className="text-2xl md:text-4xl">
+                            {about?.heading || "About Us"}
+                        </h2>
 
-                    <p className="mt-4 whitespace-pre-line text-xl">
-                        {about?.body}
-                    </p>
+                        <p className="mt-4 whitespace-pre-line text-left text-xl">
+                            {about?.body}
+                        </p>
+                    </div>
+
+                     <SignUp />
                 </div>
-            </div>
-        </section>
+            </section>
+        </>
+
     )
 }

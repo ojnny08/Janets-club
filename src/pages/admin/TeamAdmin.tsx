@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import logo from '../../assets/duesa-logo-circle.png'
+import logo from '../../assets/DUESA.png'
 import {
     getTeam,
     addMember,

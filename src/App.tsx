@@ -7,6 +7,7 @@ import Alumni from "./pages/Alumni"
 import Admin from "./pages/Admin"
 import Contact from "./components/Contact"
 import AuthProvider from "./context/AuthContext"
+import BranchBackdrop from "./components/BranchBackdrop"
 
 function ContactFooter() {
   const { pathname } = useLocation()
@@ -15,8 +16,10 @@ function ContactFooter() {
 }
 
 function Layout() {
+  const { pathname } = useLocation()
   return (
     <div className="relative flex min-h-dvh flex-col">
+      {pathname !== "/" && <BranchBackdrop />}
       <NavBar />
       <main className="flex-1 min-h-dvh pt-24">
         <Routes>

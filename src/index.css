@@ -1,6 +1,9 @@
 @import "tailwindcss";
 
 @theme {
+    --font-sans: "DM Sans", ui-sans-serif, system-ui, -apple-system,
+        "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
     /* Brand — calm, muted navy from the DUESA crest, anchored on #294f8b.
        Softer and less bright than the previous sky-blue palette. */
     --color-sky-brand: #6E8FBF;   /* desaturated crest blue (accent) */

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import logo from '../assets/duesa-logo-circle.png'
+import logo from '../assets/DUESA.png'
 import { useAuth } from '../context/useAuth'
 import LoginDropdown from './LoginDropdown'
 
@@ -15,12 +15,14 @@ export default function NavBar() {
     const [loginOpen, setLoginOpen] = useState(false)
 
     return (
-        <header className="absolute inset-x-0 top-0 z-50 mx-4 mt-2 rounded-xl bg-brand-deep">
-            <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-8 px-6 md:px-10">
+        <header className="absolute inset-x-0 top-0 z-50 mx-4 mt-2 rounded-xl bg-card">
+            <nav className="mx-auto flex h-20 max-w-7xl items-center text-brand-deep justify-between gap-8 px-6 md:px-2">
                 <NavLink to="/" className="flex flex-1 items-center gap-3">
-                    <span className="text-xl font-bold tracking-wide text-white">
-                        DUESA
-                    </span>
+                    <img
+                        src={logo}
+                        alt="DUESA logo"
+                        className="h-14 w-14 rounded-full object-cover"
+                    />
                 </NavLink>
 
                 <ul className="hidden flex-1 items-center justify-center gap-8 md:flex">
@@ -28,11 +30,6 @@ export default function NavBar() {
                         <li key={to}>
                             <NavLink
                                 to={to}
-                                className={({ isActive }) =>
-                                    isActive
-                                        ? 'text-base font-semibold text-white'
-                                        : 'text-base font-medium text-white'
-                                }
                             >
                                 {label}
                             </NavLink>
@@ -42,11 +39,6 @@ export default function NavBar() {
                         <li>
                             <NavLink
                                 to="/admin"
-                                className={({ isActive }) =>
-                                    isActive
-                                        ? 'text-base font-semibold text-white'
-                                        : 'text-base font-medium text-white'
-                                }
                             >
                                 Admin
                             </NavLink>
@@ -60,7 +52,7 @@ export default function NavBar() {
                         data-login-toggle
                         onClick={user ? logout : () => setLoginOpen((o) => !o)}
                         disabled={loading}
-                        className="px-5 py-2 text-base font-semibold text-white disabled:opacity-50"
+                        className="px-5 py-2 text-base font-semibold disabled:opacity-50"
                     >
                         {loading ? '...' : user ? 'Admin Account' : 'Admin Login'}
                     </button>

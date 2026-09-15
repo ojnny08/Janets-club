@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom"
-import logo from "../assets/duesa-logo-circle.png"
+import logo from "../assets/DUESA.png"
 import campus from "../assets/janet background.jpg"
 import Schedule from "../components/Schedule"
+import SignUp from "../components/SignUp"
 
 
 export default function Home() {
@@ -14,11 +15,10 @@ export default function Home() {
                 }}
             >
                 <div className="relative mx-auto text-center max-w-4xl">
-                    <img src={logo} alt="DUESA logo" className="mx-auto mb-6 w-65 h-65" />
+                    <img src={logo} alt="DUESA logo" className="mx-auto mb-6 h-65 w-65 rounded-full object-cover" />
                     <h1 className="text-2xl font-bold text-brand-deep md:text-2xl lg:text-4xl">
                         Dalhousie Undergraduate Economics Student Association
                     </h1>
-                    <p className="mx-auto max-w-xl pt-4 text-ink-muted">We welcome all Dalhousie students interested in Economics to join!</p>
 
                     <div className="mt-8 flex flex-wrap justify-center gap-4">
                         <Link to="/about" className="bg-brand-deep px-6 py-3 font-semibold text-white">
@@ -33,8 +33,9 @@ export default function Home() {
                     </div>
                 </div>
             </section>
-
+  
             <Schedule />
+            <SignUp />
         </main>
     )
 }
