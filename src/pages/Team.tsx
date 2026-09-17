@@ -31,7 +31,7 @@ export default function Team() {
         <section className="scroll-mt-20 px-6 py-20 md:px-16 lg:px-24">
             <div className="mx-auto max-w-6xl">
                 <h2 className="text-center  text-3xl font-bold text-brand-deep md:text-4xl">
-                    Meet The Members
+                    Meet The Team
                 </h2>
 
                 {loading ? (

@@ -6,8 +6,8 @@ import LoginDropdown from './LoginDropdown'
 
 const links = [
     { label: 'About', to: '/about' },
-    { label: 'Members', to: '/team' },
-    { label: 'Alumni', to: '/alumni' },
+    { label: 'Team', to: '/team' },
+    { label: 'Spotlight', to: '/alumni' },
 ]
 
 export default function NavBar() {
