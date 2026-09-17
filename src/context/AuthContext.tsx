@@ -13,7 +13,9 @@ const ERROR_MESSAGES: Record<string, string> = {
     'auth/network-request-failed': 'Network error. Check your connection.',
 }
 
-const ADMIN_EMAILS = [ADMIN_EMAIL, SWE_EMAIL].filter(Boolean)
+const ADMIN_EMAILS = [ADMIN_EMAIL, SWE_EMAIL]
+    .filter(Boolean)
+    .map((email) => email.trim().toLowerCase())
 
 const FALLBACK_MESSAGE = 'Sign in failed. Please try again.'
 
@@ -53,7 +55,7 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
     useEffect(() => {
         return onAuthStateChanged(auth, (u) => {
             setUser(u)
-            setIsAdmin(!!u?.email && ADMIN_EMAILS.includes(u.email))
+            setIsAdmin(!!u?.email && ADMIN_EMAILS.includes(u.email.toLowerCase()))
             setLoading(false)
         })
     }, [])
