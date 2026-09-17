@@ -25,10 +25,10 @@ export default function Home() {
                             About Us
                         </Link>
                         <Link to="/team" className="bg-brand-deep px-6 py-3 font-semibold text-white">
-                            Members
+                            Team
                         </Link>
                         <Link to="/alumni" className="bg-brand-deep px-6 py-3 font-semibold text-white">
-                            Alumni
+                            Spotlight
                         </Link>
                     </div>
                 </div>
