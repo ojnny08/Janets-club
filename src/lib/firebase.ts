@@ -19,6 +19,7 @@ export const db = getFirestore(app)
 export const storage = getStorage(app)
 
 export const ADMIN_EMAIL = import.meta.env.VITE_FIREBASE_ADMIN_EMAIL
+export const SWE_EMAIL = import.meta.env.VITE_FIREBASE_SWE_EMAIL
 
 if (!ADMIN_EMAIL) {
     throw new Error('VITE_FIREBASE_ADMIN_EMAIL is not set')

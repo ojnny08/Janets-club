@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { type User, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth'
 import { FirebaseError } from 'firebase/app'
-import { ADMIN_EMAIL, auth } from '../lib/firebase'
+import { ADMIN_EMAIL, auth, SWE_EMAIL } from '../lib/firebase'
 import { AuthContext, type AuthContextValue } from './useAuth'
 
 const ERROR_MESSAGES: Record<string, string> = {
@@ -50,7 +50,7 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
     useEffect(() => {
         return onAuthStateChanged(auth, (u) => {
             setUser(u)
-            setIsAdmin(u?.email === ADMIN_EMAIL)
+            setIsAdmin(u?.email === ADMIN_EMAIL || SWE_EMAIL)
             setLoading(false)
         })
     }, [])
