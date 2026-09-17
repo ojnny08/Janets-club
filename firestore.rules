@@ -5,7 +5,10 @@ service cloud.firestore {
 
     function isAdmin() {
       return request.auth != null
-             && request.auth.token.email == 'jonathan.lx01@gmail.com';
+             && request.auth.token.email.lower() in [
+                  'duesa@dal.ca',
+                  'jonathan.lx01@gmail.com'
+                ];
     }
 
     match /{document=**} {
