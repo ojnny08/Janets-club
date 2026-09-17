@@ -13,6 +13,8 @@ const ERROR_MESSAGES: Record<string, string> = {
     'auth/network-request-failed': 'Network error. Check your connection.',
 }
 
+const ADMIN_EMAILS = [ADMIN_EMAIL, SWE_EMAIL].filter(Boolean)
+
 const FALLBACK_MESSAGE = 'Sign in failed. Please try again.'
 
 function messageFor(error: unknown) {
@@ -40,6 +42,7 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
     const logout = async () => {
         try {
             await signOut(auth)
+            setIsAdmin(false)
         } catch (err) {
             setError(messageFor(err))
         }
@@ -50,7 +53,7 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
     useEffect(() => {
         return onAuthStateChanged(auth, (u) => {
             setUser(u)
-            setIsAdmin(u?.email === ADMIN_EMAIL || SWE_EMAIL)
+            setIsAdmin(!!u?.email && ADMIN_EMAILS.includes(u.email))
             setLoading(false)
         })
     }, [])
