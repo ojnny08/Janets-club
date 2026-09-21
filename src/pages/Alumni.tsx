@@ -1,11 +1,3 @@
-import logo from '../assets/DUESA.png'
-
-const alumni = [
-    { name: 'Alumni Name', role: 'Role, Organization', year: 'Class of 20XX' },
-    { name: 'Alumni Name', role: 'Role, Organization', year: 'Class of 20XX' },
-    { name: 'Alumni Name', role: 'Role, Organization', year: 'Class of 20XX' },
-]
-
 export default function Alumni() {
    return (
      <section
