@@ -8,6 +8,7 @@ const links = [
     { label: 'About', to: '/about' },
     { label: 'Team', to: '/team' },
     { label: 'Spotlight', to: '/alumni' },
+    { label: 'Useful Links', to: '/links'},
 ]
 
 export default function NavBar() {
@@ -17,7 +18,7 @@ export default function NavBar() {
     return (
         <header className="absolute inset-x-0 top-0 z-50 mx-4 mt-2 rounded-xl bg-card">
             <nav className="mx-auto flex h-20 max-w-7xl items-center text-brand-deep justify-between gap-8 px-6 md:px-2">
-                <NavLink to="/" className="flex flex-1 items-center gap-3">
+                <NavLink to="/" className="flex min-w-0 flex-1 items-center gap-3">
                     <img
                         src={logo}
                         alt="DUESA logo"
@@ -25,7 +26,7 @@ export default function NavBar() {
                     />
                 </NavLink>
 
-                <ul className="hidden flex-1 items-center justify-center gap-8 md:flex">
+                <ul className="hidden shrink-0 items-center justify-center gap-4 whitespace-nowrap md:flex lg:gap-8">
                     {links.map(({ label, to }) => (
                         <li key={to}>
                             <NavLink
@@ -46,13 +47,13 @@ export default function NavBar() {
                     )}
                 </ul>
 
-                <div className="relative flex flex-1 justify-end">
+                <div className="relative flex min-w-0 flex-1 justify-end">
                     <button
                         type="button"
                         data-login-toggle
                         onClick={user ? logout : () => setLoginOpen((o) => !o)}
                         disabled={loading}
-                        className="px-5 py-2 text-base font-semibold disabled:opacity-50"
+                        className="whitespace-nowrap px-5 py-2 text-base font-semibold disabled:opacity-50"
                     >
                         {loading ? '...' : user ? 'Admin Account' : 'Admin Login'}
                     </button>

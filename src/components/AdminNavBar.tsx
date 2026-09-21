@@ -1,13 +1,14 @@
 import type { IconType } from 'react-icons'
-import { LuUsers, LuLayers, LuGraduationCap, LuInfo } from 'react-icons/lu'
+import { LuUsers, LuLayers, LuGraduationCap, LuInfo, LuLink } from 'react-icons/lu'
 
-export type Section = 'team' | 'roles' | 'alumni' | 'about'
+export type Section = 'team' | 'roles' | 'alumni' | 'about' | 'links'
 
 export const SECTIONS: { key: Section; label: string; icon: IconType }[] = [
     { key: 'team', label: 'Team', icon: LuUsers },
     { key: 'roles', label: 'Roles', icon: LuLayers },
     { key: 'alumni', label: 'Alumni', icon: LuGraduationCap },
     { key: 'about', label: 'About', icon: LuInfo },
+    { key: 'links', label: 'Links', icon: LuLink },
 ]
 
 type Props = {

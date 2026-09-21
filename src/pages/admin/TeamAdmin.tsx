@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { LuChevronDown } from 'react-icons/lu'
 import logo from '../../assets/DUESA.png'
 import {
     getTeam,
@@ -201,18 +202,24 @@ function MemberEditor({
                     <Field label="Name" value={form.name} onChange={(v) => set('name', v)} />
                     <label className="flex flex-col gap-1 text-sm text-ink-muted">
                         Role
-                        <select
-                            value={form.roleId}
-                            onChange={(e) => set('roleId', e.target.value)}
-                            className="rounded-lg border border-line px-1 py-2 text-ink outline-none focus:border-brand-deep"
-                        >
-                            <option value="">role</option>
-                            {roles.map((r) => (
-                                <option key={r.id} value={r.id}>
-                                    {r.name}
-                                </option>
-                            ))}
-                        </select>
+                        <div className="relative">
+                            <select
+                                value={form.roleId}
+                                onChange={(e) => set('roleId', e.target.value)}
+                                className="peer w-full appearance-none rounded-lg border border-line px-2 py-2 pr-10 text-ink outline-none focus:border-brand-deep"
+                            >
+                                <option value="">role</option>
+                                {roles.map((r) => (
+                                    <option key={r.id} value={r.id}>
+                                        {r.name}
+                                    </option>
+                                ))}
+                            </select>
+                            <LuChevronDown
+                                aria-hidden
+                                className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-ink-muted transition-transform duration-200 peer-focus:rotate-180"
+                            />
+                        </div>
                     </label>
                     <Field
                         label="Program"

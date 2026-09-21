@@ -5,6 +5,7 @@ import AdminNavBar, { type Section } from '../components/AdminNavBar'
 import TeamAdmin from './admin/TeamAdmin'
 import RolesAdmin from './admin/RolesAdmin'
 import AboutAdmin from './admin/AboutAdmin'
+import LinksAdmin from './admin/LinksAdmin'
 
 export default function Admin() {
     const { isAdmin, loading } = useAuth()
@@ -24,6 +25,7 @@ export default function Admin() {
                     <p className="text-ink-muted">Alumni management — coming soon.</p>
                 )}
                 {active === 'about' && <AboutAdmin />}
+                {active === 'links' && <LinksAdmin />}
             </div>
         </div>
     )

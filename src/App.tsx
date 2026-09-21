@@ -8,6 +8,7 @@ import Admin from "./pages/Admin"
 import Contact from "./components/Contact"
 import AuthProvider from "./context/AuthContext"
 import BranchBackdrop from "./components/BranchBackdrop"
+import UsefulLinks from "./pages/UsefulLinks"
 
 function ContactFooter() {
   const { pathname } = useLocation()
@@ -27,6 +28,7 @@ function Layout() {
           <Route path="/team" element={<Team />} />
           <Route path="/about" element={<About />} />
           <Route path="/alumni" element={<Alumni />} />
+          <Route path="/links" element={<UsefulLinks />}/>
           <Route path="/admin" element={<Admin />} />
         </Routes>
       </main>
