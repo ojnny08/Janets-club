@@ -4,22 +4,19 @@
     --font-sans: "DM Sans", ui-sans-serif, system-ui, -apple-system,
         "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
-    /* Brand — calm, muted navy from the DUESA crest, anchored on #294f8b.
-       Softer and less bright than the previous sky-blue palette. */
-    --color-sky-brand: #6E8FBF;   /* desaturated crest blue (accent) */
-    --color-sky-soft: #DFE7F1;    /* soft blue-grey surface / rings */
-    --color-sky-tint: #EDF1F7;    /* calm off-white page background */
+    --color-sky-brand: #6E8FBF;
+    --color-sky-soft: #DFE7F1;
+    --color-sky-tint: #EDF1F7;
 
-    --color-brand: #294f8b;       /* primary navy */
-    --color-brand-deep: #1B3560;  /* deep navy — headings, buttons */
-    --color-brand-bright: #3D68A8;/* muted brighter accent */
+    --color-brand: #294f8b;
+    --color-brand-deep: #1B3560;
+    --color-brand-bright: #3D68A8;
 
-    --color-ink: #16263F;         /* deep navy ink for body text */
-    --color-ink-muted: #52627A;   /* muted secondary text */
-    --color-line: #CFDAE8;        /* soft border */
-    --color-card: #A9D6F5;        /* light blue card surface */
+    --color-ink: #16263F;
+    --color-ink-muted: #52627A;
+    --color-line: #CFDAE8;
+    --color-card: #A9D6F5;
 
-    /* Kept for backwards compatibility with existing markup */
     --color-background: #1E3A66;
 }
 
@@ -56,4 +53,58 @@
             transition-duration: 0.01ms !important;
         }
     }
+}
+
+.fc {
+    --fc-border-color: var(--color-line);
+    --fc-button-bg-color: var(--color-brand);
+    --fc-button-border-color: var(--color-brand);
+    --fc-button-hover-bg-color: var(--color-brand-deep);
+    --fc-button-hover-border-color: var(--color-brand-deep);
+    --fc-button-active-bg-color: var(--color-brand-deep);
+    --fc-button-active-border-color: var(--color-brand-deep);
+    --fc-today-bg-color: var(--color-sky-soft);
+    --fc-event-bg-color: var(--color-brand);
+    --fc-event-border-color: var(--color-brand);
+    --fc-page-bg-color: transparent;
+    font-family: var(--font-sans);
+}
+
+.fc .fc-toolbar-title {
+    color: var(--color-brand-deep);
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.fc .fc-header-toolbar .fc-toolbar-chunk {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.fc .fc-col-header-cell-cushion,
+.fc .fc-daygrid-day-number {
+    color: var(--color-ink-muted);
+    text-decoration: none;
+}
+
+.fc .fc-event {
+    cursor: pointer;
+    padding: 1px 4px;
+}
+
+.fc .fc-button:focus,
+.fc .fc-button:focus-visible,
+.fc .fc-button-primary:not(:disabled):active:focus,
+.fc .fc-button-primary:not(:disabled).fc-button-active:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+.fc .fc-prev-button,
+.fc .fc-next-button {
+    padding: 0.4em 0.75em;
+    font-size: 1rem;
 }
