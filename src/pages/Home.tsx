@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom"
 import logo from "../assets/DUESA.png"
 import campus from "../assets/janet background.jpg"
-import Schedule from "../components/Schedule"
 import SignUp from "../components/SignUp"
 import Events from "./Events"
 
