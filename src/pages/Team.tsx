@@ -60,6 +60,11 @@ export default function Team() {
                                                 <h4 className="text-2xl font-semibold text-brand">
                                                     {person.name}
                                                 </h4>
+                                                {person.title && (
+                                                    <div className="text-base font-bold text-ink">
+                                                        {person.title}
+                                                    </div>
+                                                )}
                                                 <div className="text-base text-ink-muted">
                                                     {person.program}
                                                 </div>

@@ -14,6 +14,7 @@ export type Member = {
     id: string
     roleId?: string
     name: string
+    title?: string
     program: string
     year: string
     imageUrl?: string

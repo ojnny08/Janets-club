@@ -15,6 +15,7 @@ import { uploadImage } from '../../lib/storage'
 const EMPTY: MemberInput = {
     roleId: '',
     name: '',
+    title: '',
     program: '',
     year: '',
     imageUrl: '',
@@ -99,7 +100,9 @@ export default function TeamAdmin() {
                                         <span className="mt-3 font-semibold text-ink">
                                             {m.name || '(no name)'}
                                         </span>
-                                        <span className="text-sm text-ink-muted">{g.label}</span>
+                                        <span className="text-sm text-ink-muted">
+                                            {m.title || g.label}
+                                        </span>
                                     </button>
                                 ))}
                             </div>
@@ -139,6 +142,7 @@ function MemberEditor({
             ? {
                   roleId: member.roleId ?? '',
                   name: member.name,
+                  title: member.title ?? '',
                   program: member.program,
                   year: member.year,
                   imageUrl: member.imageUrl ?? '',
@@ -221,6 +225,11 @@ function MemberEditor({
                             />
                         </div>
                     </label>
+                    <Field
+                        label="Role title"
+                        value={form.title ?? ''}
+                        onChange={(v) => set('title', v)}
+                    />
                     <Field
                         label="Program"
                         value={form.program}
