@@ -10,15 +10,23 @@ import {
 } from 'firebase/firestore'
 import { db } from './firebase'
 
+export type EventType = 'dusa' | 'meeting'
+
+export const EVENT_TYPE_LABELS: Record<EventType, string> = {
+    dusa: 'DUSA Events',
+    meeting: 'Team Meetings',
+}
+
 export type AppEvent = {
     id: string
     title: string
-    date: string 
-    endDate?: string 
-    startTime?: string 
-    endTime?: string 
+    date: string
+    endDate?: string
+    startTime?: string
+    endTime?: string
     location?: string
     description?: string
+    type?: EventType
     createdAt?: Timestamp
 }
 
@@ -84,3 +92,83 @@ export function formatEventWhen(e: Pick<AppEvent, 'date' | 'startTime' | 'endTim
         : formatTime(e.startTime)
     return `${dateLabel} · ${time}`
 }
+
+// Local-time 'YYYY-MM-DD'. Date#toISOString() formats in UTC, which lands on
+// the wrong day for anyone not on/behind GMT.
+export function toISODate(d: Date): string {
+    const month = String(d.getMonth() + 1).padStart(2, '0')
+    const day = String(d.getDate()).padStart(2, '0')
+    return `${d.getFullYear()}-${month}-${day}`
+}
+
+export function todayISO(): string {
+    return toISODate(new Date())
+}
+
+// The subset of an event the details modal shows.
+export type EventDetails = Pick<
+    AppEvent,
+    'title' | 'date' | 'endDate' | 'startTime' | 'endTime' | 'location' | 'description'
+>
+
+export function toEventDetails(e: AppEvent): EventDetails {
+    return {
+        title: e.title,
+        date: e.date,
+        endDate: e.endDate,
+        startTime: e.startTime,
+        endTime: e.endTime,
+        location: e.location,
+        description: e.description,
+    }
+}
+
+// Shape FullCalendar expects: ISO start/end strings, with the details kept in
+// extendedProps so a click can open the modal without another lookup.
+export function toCalendarEvent(e: AppEvent) {
+    const allDay = !e.startTime
+    let end: string | undefined
+    if (allDay) {
+        if (e.endDate) {
+            // FullCalendar treats an all-day end as exclusive.
+            const d = new Date(e.endDate + 'T00:00:00')
+            d.setDate(d.getDate() + 1)
+            end = toISODate(d)
+        }
+    } else if (e.endTime) {
+        end = `${e.date}T${e.endTime}`
+    }
+    const { title, ...details } = toEventDetails(e)
+    return {
+        id: e.id,
+        title,
+        start: allDay ? e.date : `${e.date}T${e.startTime}`,
+        end,
+        allDay,
+        extendedProps: details,
+    }
+}
+
+// 24h 'HH:mm' split into the parts the admin time dropdowns edit.
+export type TimeParts = { hour: string; minute: string; meridiem: string }
+
+export function parseTime(value: string): TimeParts {
+    if (!/^\d{2}:\d{2}$/.test(value)) return { hour: '', minute: '', meridiem: '' }
+    const h24 = parseInt(value.slice(0, 2), 10)
+    return {
+        hour: String(h24 % 12 === 0 ? 12 : h24 % 12),
+        minute: value.slice(3, 5),
+        meridiem: h24 < 12 ? 'AM' : 'PM',
+    }
+}
+
+// Inverse of parseTime; '' until every part is chosen.
+export function buildTime({ hour, minute, meridiem }: TimeParts): string {
+    if (!hour || !minute || !meridiem) return ''
+    let h = parseInt(hour, 10) % 12
+    if (meridiem === 'PM') h += 12
+    return `${String(h).padStart(2, '0')}:${minute}`
+}
+
+export const HOURS = Array.from({ length: 12 }, (_, i) => String(i + 1))
+export const MINUTES = Array.from({ length: 60 }, (_, i) => String(i).padStart(2, '0'))

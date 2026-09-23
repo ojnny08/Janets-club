@@ -6,18 +6,28 @@ import {
     removeEvent,
     formatEventDate,
     formatTime,
+    parseTime,
+    buildTime,
+    HOURS,
+    MINUTES,
+    EVENT_TYPE_LABELS,
     type AppEvent,
     type AppEventInput,
+    type EventType,
 } from '../../lib/events'
+
+const DEFAULT_START = '09:00'
+const DEFAULT_END = '10:00'
 
 const EMPTY: AppEventInput = {
     title: '',
     date: '',
     endDate: '',
-    startTime: '',
-    endTime: '',
+    startTime: DEFAULT_START,
+    endTime: DEFAULT_END,
     location: '',
     description: '',
+    type: 'dusa',
 }
 
 export default function EventsAdmin() {
@@ -108,14 +118,30 @@ function EventEditor({
                   endTime: event.endTime ?? '',
                   location: event.location ?? '',
                   description: event.description ?? '',
+                  type: event.type ?? 'dusa',
               }
             : EMPTY,
     )
+    // Existing events with no start time are all-day; new events default to timed.
+    const [allDay, setAllDay] = useState(event ? !event.startTime : false)
     const [busy, setBusy] = useState(false)
     const [error, setError] = useState<string | null>(null)
 
     const set = (field: keyof AppEventInput, value: string) =>
         setForm((f) => ({ ...f, [field]: value }))
+
+    const toggleAllDay = (checked: boolean) => {
+        setAllDay(checked)
+        setForm((f) =>
+            checked
+                ? { ...f, startTime: '', endTime: '' }
+                : {
+                      ...f,
+                      startTime: f.startTime || DEFAULT_START,
+                      endTime: f.endTime || DEFAULT_END,
+                  },
+        )
+    }
 
     const handleSave = async () => {
         if (!form.title.trim() || !form.date) {
@@ -169,6 +195,20 @@ function EventEditor({
                         value={form.title}
                         onChange={(v) => set('title', v)}
                     />
+                    <label className="flex flex-col gap-1 text-sm text-ink-muted">
+                        Category
+                        <select
+                            value={form.type ?? 'dusa'}
+                            onChange={(e) => set('type', e.target.value as EventType)}
+                            className="rounded-lg border border-line px-2 py-2 text-ink outline-none focus:border-brand-deep"
+                        >
+                            {(Object.keys(EVENT_TYPE_LABELS) as EventType[]).map((t) => (
+                                <option key={t} value={t}>
+                                    {EVENT_TYPE_LABELS[t]}
+                                </option>
+                            ))}
+                        </select>
+                    </label>
                     <div className="grid grid-cols-2 gap-3">
                         <Field
                             label="Date"
@@ -183,16 +223,29 @@ function EventEditor({
                             onChange={(v) => set('endDate', v)}
                         />
                     </div>
-                    <TimeSelect
-                        label="Start time (leave blank = all day)"
-                        value={form.startTime ?? ''}
-                        onChange={(v) => set('startTime', v)}
-                    />
-                    <TimeSelect
-                        label="End time (optional)"
-                        value={form.endTime ?? ''}
-                        onChange={(v) => set('endTime', v)}
-                    />
+                    <label className="flex items-center gap-2 text-sm text-ink">
+                        <input
+                            type="checkbox"
+                            checked={allDay}
+                            onChange={(e) => toggleAllDay(e.target.checked)}
+                            className="h-4 w-4 rounded border-line accent-brand"
+                        />
+                        All day
+                    </label>
+                    {!allDay && (
+                        <>
+                            <TimeSelect
+                                label="Start time"
+                                value={form.startTime || DEFAULT_START}
+                                onChange={(v) => set('startTime', v)}
+                            />
+                            <TimeSelect
+                                label="End time (optional)"
+                                value={form.endTime || DEFAULT_END}
+                                onChange={(v) => set('endTime', v)}
+                            />
+                        </>
+                    )}
                     <Field
                         label="Location (optional)"
                         value={form.location ?? ''}
@@ -249,19 +302,6 @@ function EventEditor({
 }
 
 // Hour / minute / AM-PM dropdowns that read and write a 24h 'HH:mm' string.
-function parseTime(value: string) {
-    if (!/^\d{2}:\d{2}$/.test(value)) return { hour: '', minute: '', meridiem: '' }
-    const h24 = parseInt(value.slice(0, 2), 10)
-    return {
-        hour: String(h24 % 12 === 0 ? 12 : h24 % 12),
-        minute: value.slice(3, 5),
-        meridiem: h24 < 12 ? 'AM' : 'PM',
-    }
-}
-
-const HOURS = Array.from({ length: 12 }, (_, i) => String(i + 1))
-const MINUTES = Array.from({ length: 60 }, (_, i) => String(i).padStart(2, '0'))
-
 function TimeSelect({
     label,
     value,
@@ -275,13 +315,7 @@ function TimeSelect({
 
     const update = (next: typeof parts) => {
         setParts(next)
-        if (next.hour && next.minute && next.meridiem) {
-            let h = parseInt(next.hour, 10) % 12
-            if (next.meridiem === 'PM') h += 12
-            onChange(`${String(h).padStart(2, '0')}:${next.minute}`)
-        } else {
-            onChange('')
-        }
+        onChange(buildTime(next))
     }
 
     const selectClass =
@@ -296,7 +330,6 @@ function TimeSelect({
                     onChange={(e) => update({ ...parts, hour: e.target.value })}
                     className={selectClass}
                 >
-                    <option value="">Hr</option>
                     {HOURS.map((h) => (
                         <option key={h} value={h}>
                             {h}
@@ -309,7 +342,6 @@ function TimeSelect({
                     onChange={(e) => update({ ...parts, minute: e.target.value })}
                     className={selectClass}
                 >
-                    <option value="">Min</option>
                     {MINUTES.map((m) => (
                         <option key={m} value={m}>
                             {m}
@@ -321,7 +353,6 @@ function TimeSelect({
                     onChange={(e) => update({ ...parts, meridiem: e.target.value })}
                     className={selectClass}
                 >
-                    <option value="">—</option>
                     <option value="AM">AM</option>
                     <option value="PM">PM</option>
                 </select>

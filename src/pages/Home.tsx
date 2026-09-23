@@ -3,6 +3,7 @@ import logo from "../assets/DUESA.png"
 import campus from "../assets/janet background.jpg"
 import Schedule from "../components/Schedule"
 import SignUp from "../components/SignUp"
+import Events from "./Events"
 
 
 export default function Home() {
@@ -34,7 +35,7 @@ export default function Home() {
                 </div>
             </section>
   
-            <Schedule />
+            <Events />
             <SignUp />
         </main>
     )
