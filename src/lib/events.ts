@@ -53,7 +53,6 @@ export async function removeEvent(id: string): Promise<void> {
     await deleteDoc(doc(db, 'events', id))
 }
 
-// Short label for lists/rows, e.g. "Wed, Sep 24, 2026".
 export function formatEventDate(date: string): string {
     if (!date) return ''
     const d = new Date(date + 'T00:00:00')
@@ -65,7 +64,6 @@ export function formatEventDate(date: string): string {
     })
 }
 
-// Convert a 24h 'HH:mm' string to a 12h label, e.g. '18:00' -> '6:00 PM'.
 export function formatTime(time?: string): string {
     if (!time || !/^\d{2}:\d{2}$/.test(time)) return ''
     const h24 = parseInt(time.slice(0, 2), 10)
@@ -75,8 +73,6 @@ export function formatTime(time?: string): string {
     return `${hour12}:${minute} ${meridiem}`
 }
 
-// Full date + time label for event details, e.g.
-// "Thursday, September 24, 2026 · 6:00 PM–8:00 PM" (or "· All day").
 export function formatEventWhen(e: Pick<AppEvent, 'date' | 'startTime' | 'endTime'>): string {
     if (!e.date) return ''
     const d = new Date(e.date + 'T00:00:00')
@@ -93,8 +89,6 @@ export function formatEventWhen(e: Pick<AppEvent, 'date' | 'startTime' | 'endTim
     return `${dateLabel} · ${time}`
 }
 
-// Local-time 'YYYY-MM-DD'. Date#toISOString() formats in UTC, which lands on
-// the wrong day for anyone not on/behind GMT.
 export function toISODate(d: Date): string {
     const month = String(d.getMonth() + 1).padStart(2, '0')
     const day = String(d.getDate()).padStart(2, '0')
@@ -105,7 +99,6 @@ export function todayISO(): string {
     return toISODate(new Date())
 }
 
-// The subset of an event the details modal shows.
 export type EventDetails = Pick<
     AppEvent,
     'title' | 'date' | 'endDate' | 'startTime' | 'endTime' | 'location' | 'description'
@@ -123,14 +116,11 @@ export function toEventDetails(e: AppEvent): EventDetails {
     }
 }
 
-// Shape FullCalendar expects: ISO start/end strings, with the details kept in
-// extendedProps so a click can open the modal without another lookup.
 export function toCalendarEvent(e: AppEvent) {
     const allDay = !e.startTime
     let end: string | undefined
     if (allDay) {
         if (e.endDate) {
-            // FullCalendar treats an all-day end as exclusive.
             const d = new Date(e.endDate + 'T00:00:00')
             d.setDate(d.getDate() + 1)
             end = toISODate(d)
@@ -149,7 +139,6 @@ export function toCalendarEvent(e: AppEvent) {
     }
 }
 
-// 24h 'HH:mm' split into the parts the admin time dropdowns edit.
 export type TimeParts = { hour: string; minute: string; meridiem: string }
 
 export function parseTime(value: string): TimeParts {
@@ -162,7 +151,6 @@ export function parseTime(value: string): TimeParts {
     }
 }
 
-// Inverse of parseTime; '' until every part is chosen.
 export function buildTime({ hour, minute, meridiem }: TimeParts): string {
     if (!hour || !minute || !meridiem) return ''
     let h = parseInt(hour, 10) % 12

@@ -67,7 +67,7 @@ export default function Events() {
                                 onSelect={openEvent}
                             />
                             <UpcomingSection
-                                title="Team Meetings"
+                                title="Department of Economics"
                                 events={upcoming.meeting}
                                 onSelect={openEvent}
                             />
