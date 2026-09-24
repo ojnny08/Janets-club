@@ -14,7 +14,7 @@ export type EventType = 'dusa' | 'meeting'
 
 export const EVENT_TYPE_LABELS: Record<EventType, string> = {
     dusa: 'DUSA Events',
-    meeting: 'Team Meetings',
+    meeting: 'Department of Economics',
 }
 
 export type AppEvent = {
