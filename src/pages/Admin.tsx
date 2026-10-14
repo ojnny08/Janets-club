@@ -7,6 +7,7 @@ import RolesAdmin from './admin/RolesAdmin'
 import AboutAdmin from './admin/AboutAdmin'
 import LinksAdmin from './admin/LinksAdmin'
 import EventsAdmin from './admin/EventsAdmin'
+import NewsletterAdmin from './admin/NewsletterAdmin'
 
 export default function Admin() {
     const { isAdmin, loading } = useAuth()
@@ -28,6 +29,7 @@ export default function Admin() {
                 {active === 'about' && <AboutAdmin />}
                 {active === 'links' && <LinksAdmin />}
                 {active === 'events' && <EventsAdmin />}
+                {active === 'newsletter' && <NewsletterAdmin />}
             </div>
         </div>
     )

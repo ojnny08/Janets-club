@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import logo from "../assets/DUESA.png"
 import campus from "../assets/janet background.jpg"
 import SignUp from "../components/SignUp"
+import Newsletter from "../components/Newsletter"
 import Events from "./Events"
 
 
@@ -33,7 +34,7 @@ export default function Home() {
                     </div>
                 </div>
             </section>
-  
+            <Newsletter />
             <Events />
             <SignUp />
         </main>
