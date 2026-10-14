@@ -6,7 +6,7 @@ import logo from '../assets/DUESA.png'
 const EMAIL = 'duesa@gmail.com'
 
 const socials = [
-    { label: 'Instagram', href: 'https://instagram.com/duesa', Icon: FaInstagram },
+    { label: 'Instagram', href: 'https://www.instagram.com/dal_economics/', Icon: FaInstagram },
     { label: 'LinkedIn', href: 'https://linkedin.com/company/duesa', Icon: FaLinkedin },
     { label: 'Email', href: `mailto:${EMAIL}`, Icon: SiGmail },
 ]
